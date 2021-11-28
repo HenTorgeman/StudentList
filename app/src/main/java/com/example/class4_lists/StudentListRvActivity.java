@@ -37,7 +37,7 @@ public class StudentListRvActivity extends AppCompatActivity {
         MyAdapter adapter = new MyAdapter();
         list.setAdapter(adapter);
 
-        //תופס לנו לחיצה על תא ברשימה, וגם על כל צ'קבוקס
+        //תופס לנו לחיצה על תא ברשימה
         adapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
@@ -45,33 +45,29 @@ public class StudentListRvActivity extends AppCompatActivity {
             }
         });
 
-        //יכול להיות שצריך להופיע בתוך MyViewHolder למטה איפה שכל הליסנרים
-//        Button addStudentBtn = findViewById(R.id.add_student_btn);
-//        addStudentBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                newStudent();
-//            }
-//        });
+        Button addStudentBtn = findViewById(R.id.add_student_btn);
+        addStudentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(AddNewStudentActivity.class);
+            }
+        });
 
     }
 
     /*-------------------------------------------------------------------------------------------*/
-    public void newStudent() {
-        startActivity(new Intent(this, AddNewStudentActivity.class));
-    }
 
-    public void studentDetails() {
-        startActivity(new Intent(this, StudentDetailsActivity.class));
+    public void openActivity(Class activityClass) {
+        startActivity(new Intent(this, activityClass));
     }
 
     /*-------------------------------------------------------------------------------------------*/
+
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameTV;
         TextView idTV;
         CheckBox cb;
-        Button addStudentBtn;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener listener) {
 
@@ -80,32 +76,17 @@ public class StudentListRvActivity extends AppCompatActivity {
             nameTV = itemView.findViewById(R.id.listrow_name_tv);
             idTV = itemView.findViewById(R.id.listrow_id_tv);
             cb = itemView.findViewById(R.id.checkBox);
-//            addStudentBtn = itemView.findViewById(R.id.add_student_btn);
-            addStudentBtn = findViewById(R.id.add_student_btn);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     listener.onItemClick(pos);
-                    studentDetails();
+                    openActivity(StudentDetailsActivity.class);
                 }
             });
 
-            cb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    listener.onItemClick(pos);
-                }
-            });
 
-            addStudentBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    newStudent();
-                }
-            });
         }
     }
 
@@ -141,8 +122,12 @@ public class StudentListRvActivity extends AppCompatActivity {
             holder.idTV.setText(student.getId());
             holder.cb.setChecked(student.isFlag());
 
-//            Student s = data.get(position);
-//            s.setFlag(holder.cb.isChecked());
+            holder.cb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    student.setFlag(holder.cb.isChecked());
+                }
+            });
         }
 
         @Override
