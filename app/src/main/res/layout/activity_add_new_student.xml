@@ -115,7 +115,7 @@
         app:srcCompat="@drawable/avatar" />
 
     <CheckBox
-        android:id="@+id/details_checkBox"
+        android:id="@+id/main_cb"
         android:layout_width="107dp"
         android:layout_height="45dp"
         android:layout_marginStart="64dp"
@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/main_address_et" />
 
     <Button
-        android:id="@+id/details_edit_btn"
+        android:id="@+id/main_save_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -138,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/main_cancel_btn"
-        app:layout_constraintTop_toBottomOf="@+id/details_checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/main_cb"
         app:layout_constraintVertical_bias="0.829" />
 
     <Button
@@ -152,11 +152,11 @@
         android:text="Cancel"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/details_edit_btn"
+        app:layout_constraintEnd_toStartOf="@+id/main_save_btn"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/main_cb"
         app:layout_constraintVertical_bias="0.829" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

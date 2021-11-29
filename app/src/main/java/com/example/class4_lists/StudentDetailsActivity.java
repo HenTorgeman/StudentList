@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,7 +14,7 @@ import com.example.class4_lists.model.Student;
 
 public class StudentDetailsActivity extends AppCompatActivity {
 
-    TextView nameTextView, IDTextView;
+    TextView nameTv, idTv,phoneTv,addressTv;
     CheckBox cb;
 
     @Override
@@ -26,12 +25,19 @@ public class StudentDetailsActivity extends AppCompatActivity {
         Bundle position = getIntent().getExtras();
         Student student = Model.instance.getAllStudents().get(position.getInt("pos"));
 
-        nameTextView = findViewById(R.id.details_name_tv);
-        IDTextView = findViewById(R.id.details_id_tv);
-        cb = findViewById(R.id.details_checkBox);
+        nameTv = findViewById(R.id.details_name_tv);
+        idTv = findViewById(R.id.details_id_tv);
+        phoneTv = findViewById(R.id.details_phone_tv);
+        addressTv = findViewById(R.id.details_address_tv);
+        cb = findViewById(R.id.main_cb);
+
+        nameTv.setText(student.getName());
+        idTv.setText(student.getId());
+        phoneTv.setText(student.getPhone());
+        addressTv.setText(student.getAddress());
         cb.setChecked(student.isFlag());
 
-        Button editBtn = findViewById(R.id.details_edit_btn);
+        Button editBtn = findViewById(R.id.main_save_btn);
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +50,8 @@ public class StudentDetailsActivity extends AppCompatActivity {
     }
 
     private void Edit(){
+
         startActivity(new Intent(this, EditStudentDetailsActivity.class));
+        //startActivity(new Intent(StudentDetailsActivity.this, EditStudentDetailsActivity.class));
     }
 }

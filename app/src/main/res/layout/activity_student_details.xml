@@ -115,7 +115,7 @@
         app:srcCompat="@drawable/avatar" />
 
     <CheckBox
-        android:id="@+id/details_checkBox"
+        android:id="@+id/main_cb"
         android:layout_width="107dp"
         android:layout_height="45dp"
         android:layout_marginStart="64dp"
@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/details_edit_btn"
+        android:id="@+id/main_save_btn"
         android:layout_width="102dp"
         android:layout_height="44dp"
         android:layout_marginEnd="20dp"
@@ -134,7 +134,7 @@
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_checkBox"
+        app:layout_constraintTop_toBottomOf="@+id/main_cb"
         app:layout_constraintVertical_bias="0.829" />
 
 
