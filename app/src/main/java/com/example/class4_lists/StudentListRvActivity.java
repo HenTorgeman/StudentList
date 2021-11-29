@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.class4_lists.model.Model;
@@ -42,6 +43,10 @@ public class StudentListRvActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 Log.d("Tag", "row was clicked " + position);
+                Intent intent = new Intent(StudentListRvActivity.this, StudentDetailsActivity.class);
+                intent.putExtra("pos",position);
+
+                startActivity(intent);
             }
         });
 
@@ -82,10 +87,18 @@ public class StudentListRvActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     listener.onItemClick(pos);
-                    openActivity(StudentDetailsActivity.class);
+//                    openActivity(StudentDetailsActivity.class);
                 }
             });
 
+            cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    int pos = getAdapterPosition();
+                    Student s = Model.instance.getAllStudents().get(pos);
+                    s.setFlag(cb.isChecked());
+                }
+            });
 
         }
     }
@@ -122,12 +135,12 @@ public class StudentListRvActivity extends AppCompatActivity {
             holder.idTV.setText(student.getId());
             holder.cb.setChecked(student.isFlag());
 
-            holder.cb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    student.setFlag(holder.cb.isChecked());
-                }
-            });
+//            holder.cb.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    student.setFlag(holder.cb.isChecked());
+//                }
+//            });
         }
 
         @Override
