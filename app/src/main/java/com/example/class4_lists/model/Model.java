@@ -15,10 +15,10 @@ public class Model {
     //private constructor - אף אחד לא יכול ליצור אחד חדש כזה מבחוץ
     private Model() {
         //סתם לולאה כדי ליצור לנו DATA
-//        for (int i = 0; i < 100; i++) {
-//            Student s = new Student("name", "" + i,"","", false);
-//            data.add(s);
-//        }
+        for (int i = 0; i < 3; i++) {
+            Student s = new Student("name", "" + i,"","", false);
+            data.add(s);
+        }
     }
 
 

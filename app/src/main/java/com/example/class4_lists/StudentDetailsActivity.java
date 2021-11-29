@@ -45,13 +45,13 @@ public class StudentDetailsActivity extends AppCompatActivity {
             }
         });
 
-
-       // Log.d("TAG", "S.name "+student.isFlag());
     }
 
     private void Edit(){
 
-        startActivity(new Intent(this, EditStudentDetailsActivity.class));
-        //startActivity(new Intent(StudentDetailsActivity.this, EditStudentDetailsActivity.class));
+        Intent intent = new Intent(StudentDetailsActivity.this, EditStudentDetailsActivity.class);
+        Bundle position = getIntent().getExtras();
+        intent.putExtra("pos", position.getInt("pos"));
+        startActivity(intent);
     }
 }

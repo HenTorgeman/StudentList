@@ -16,6 +16,7 @@ public class EditStudentDetailsActivity extends AppCompatActivity {
 
     EditText nameEt, idEt,phoneEt,addressEt;
     CheckBox cb;
+Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +24,7 @@ public class EditStudentDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_student_details);
 
         Bundle position = getIntent().getExtras();
-        Student student= Model.instance.getAllStudents().get(position.getInt("pos"));
+        student= Model.instance.getAllStudents().get(position.getInt("pos"));
 
         nameEt = findViewById(R.id.main_name_et);
         idEt = findViewById(R.id.main_id_et);
@@ -44,34 +45,33 @@ public class EditStudentDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                save(student);
+                save(position);
             }
         });
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cacnel();
+                cacnel(position);
             }
         });
 
     }
 
-
-    public void save(Student student){
-
-        student.setAddress(addressEt.toString());
-        student.setPhone(phoneEt.toString());
-        student.setName(nameEt.toString());
-        student.setId(idEt.toString());
-        student.setFlag(cb.isChecked());
-        cacnel();   //Just to dont repet redirectio page.
-    }
-
-
-    public void cacnel(){
+    public void cacnel(Bundle position){
         startActivity(new Intent(this,StudentDetailsActivity.class));
-
-
     }
+
+    public void save(Bundle position){
+
+        student= Model.instance.getAllStudents().get(position.getInt("pos"));
+
+        student.setName(nameEt.getText().toString());
+        student.setId(idEt.getText().toString());
+        student.setPhone(phoneEt.getText().toString());
+        student.setAddress(addressEt.getText().toString());
+        student.setFlag(cb.isChecked());
+        cacnel(position);   //Just to dont repet redirectio page.
+    }
+
 }
